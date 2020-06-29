@@ -70,10 +70,10 @@
   become: true
   tasks:
     - git:
-      repo: https://github.com/lFORKSl/simple-lamp.git
-      dest: /var/www/html/simple-lamp
-      clone: true
-      update: true
+        repo: https://github.com/lFORKSl/simple-lamp.git
+        dest: /var/www/html/simple-lamp
+        clone: true
+        update: true
 
     - command: 
         chdir: /var
