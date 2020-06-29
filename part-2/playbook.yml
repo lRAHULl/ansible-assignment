@@ -1,15 +1,4 @@
 - name: Manage MySQL
   hosts: amazon-linux
   roles:
-    - role: manage_my_sql_role
-  tasks:
-    - 
-
-    
-
-    
-
-    
-
-    - name: Start MySQL Server and enable it
-      service: name=mysqld state=started enabled=yes
+    - role: manage_mysql_role
