@@ -1,0 +1,92 @@
+
+- name: Install Packages
+  hosts: linux
+  become: true
+  vars:
+    redhat:
+      - git
+      - php
+      - httpd
+      - mysql-server
+    debian:
+      - git
+      - php
+      - apache2
+      - mysql-server
+      - libapache2-mod-php
+      - php-mysql 
+      - php-curl
+      - php-xml 
+      - php-memcached
+    redhat_services:
+      - httpd
+      - mysqld
+    debian_services:
+      - apache2
+      - mysqld
+  tasks: 
+    - yum:
+        name: "{{ item }}"
+        state: latest
+      when: ansible_os_family == 'RedHat'
+      with_items: "{{ redhat }}"
+    - apt:
+        name: "{{ item }}"
+        state: latest
+      when: ansible_os_family == 'Debian'
+      with_items: "{{ debian }}"
+
+- name: Manage Servers
+  hosts: linux
+  become: true
+  vars_prompt:
+    - name: server_action
+      prompt: "Enter the state the servers should be in => (started/stopped): "
+      private: no
+  vars:
+    redhat_services:
+      - httpd
+      - mysqld
+    debian_services:
+      - apache2
+      - mysql
+  tasks:
+    - service:
+        name: "{{ item }}"
+        state: "{{ server_action }}"
+      when: 
+        - ansible_os_family == 'Debian'
+        - server_action == "started" or server_action == "stopped"
+      loop: "{{ debian_services }}"
+    - service:
+        name: "{{ item }}"
+        state: "{{ server_action }}"
+      when: 
+        - ansible_os_family == 'RedHat'
+        - server_action == "started" or server_action == "stopped"
+      loop: "{{ redhat_services }}"
+
+- name: Manage Servers
+  hosts: linux
+  become: true
+  tasks:
+    # - command: 
+    #     chdir: /var/www/html
+    #     cmd: git clone https://github.com/lFORKSl/simple-lamp.git
+
+    - command: 
+        chdir: /var
+        cmd: chown -R ubuntu:ubuntu www
+
+    # - command: 
+    #     chdir: /var/www/html/simple-lamp
+    #     cmd: mysql simple_lamp < simple_lamp.sql
+
+    - command: 
+        chdir: /var/www/html/simple-lamp
+        cmd: chown -R www-data:www-data uploads
+
+    
+
+
+  
