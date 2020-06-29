@@ -65,25 +65,27 @@
         - server_action == "started" or server_action == "stopped"
       loop: "{{ redhat_services }}"
 
-# - name: Manage Servers
-#   hosts: linux_servers
-#   become: true
-#   tasks:
-#     # - command: 
-#     #     chdir: /var/www/html
-#     #     cmd: git clone https://github.com/lFORKSl/simple-lamp.git
+- name: Manage Servers
+  hosts: linux_servers
+  become: true
+  tasks:
+    - git:
+      repo: https://github.com/lFORKSl/simple-lamp.git
+      dest: /var/www/html/simple-lamp
+      clone: true
+      update: true
 
-#     - command: 
-#         chdir: /var
-#         cmd: chown -R ubuntu:ubuntu www
+    - command: 
+        chdir: /var
+        cmd: chown -R ubuntu:ubuntu www
 
-#     # - command: 
-#     #     chdir: /var/www/html/simple-lamp
-#     #     cmd: mysql simple_lamp < simple_lamp.sql
+    - command: 
+        chdir: /var/www/html/simple-lamp
+        cmd: mysql simple_lamp < simple_lamp.sql
 
-#     - command: 
-#         chdir: /var/www/html/simple-lamp
-#         cmd: chown -R www-data:www-data uploads
+    - command: 
+        chdir: /var/www/html/simple-lamp
+        cmd: chown -R www-data:www-data uploads
 
     
 
