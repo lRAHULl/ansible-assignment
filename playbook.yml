@@ -79,9 +79,10 @@
         chdir: /var
         cmd: chown -R ubuntu:ubuntu www
 
-    - command: 
-        chdir: /var/www/html/simple-lamp
-        cmd: mysql simple_lamp < simple_lamp.sql
+    - command: > 
+        mysql simple_lamp < /var/www/html/simple-lamp/simple_lamp.sql
+      check_mode: no
+      changed_when: False
 
     - command: 
         chdir: /var/www/html/simple-lamp
