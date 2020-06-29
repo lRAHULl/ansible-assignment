@@ -8,12 +8,16 @@
 
     - name: Install MySQL Community Repo
       command: /usr/bin/rpm -ivh /tmp/mysql-community-release-el7-7.noarch.rpm
+      register: install_out
+      ignore_errors: True
+
+    - name: fail the play if the previous command did not succeed
+      fail:
+        msg: "Installation Failed"
+      when: "'FAILED' in install_out.stderr"
 
     - name: Install MySQL Server
       yum: name=mysql-server state=present
-
-    - name: Install MySQL-python, this is required for the task remove anonymous user
-      yum: name=MySQL-python state=present
 
     - name: Start MySQL Server and enable it
       service: name=mysqld state=started enabled=yes
