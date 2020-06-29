@@ -1,6 +1,6 @@
 
 - name: Install Packages
-  hosts: linux
+  hosts: linux_servers
   become: true
   vars:
     redhat:
@@ -37,7 +37,7 @@
       with_items: "{{ debian }}"
 
 - name: Manage Servers
-  hosts: linux
+  hosts: linux_servers
   become: true
   vars_prompt:
     - name: server_action
@@ -67,7 +67,7 @@
       loop: "{{ redhat_services }}"
 
 # - name: Manage Servers
-#   hosts: linux
+#   hosts: linux_servers
 #   become: true
 #   tasks:
 #     # - command: 
