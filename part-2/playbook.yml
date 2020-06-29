@@ -12,9 +12,9 @@
       ignore_errors: True
 
     - name: fail the play if the previous command did not succeed
-      fail:
-        msg: "Installation Failed"
-      when: "'FAILED' in install_out.stderr"
+      debug:
+        msg: "Installation Failed {{ install_out.stderr }}"
+      when: install_out.stderr != ''
 
     - name: Install MySQL Server
       yum: name=mysql-server state=present
