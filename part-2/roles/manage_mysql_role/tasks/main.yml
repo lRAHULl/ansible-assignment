@@ -1,6 +1,6 @@
 ---
-- include: download-repo
-- include: install-repo
-- include: install-mysql
-- include: start-service
+- include: download-repo.yml
+- include: install-repo.yml
+- include: install-mysql.yml
+- include: start-service.yml
 
