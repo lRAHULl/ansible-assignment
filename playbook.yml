@@ -79,11 +79,13 @@
         chdir: /var
         cmd: chown -R ubuntu:ubuntu www
 
-    - script: ./scripts/run_sql.sh
-
+    
     - command: 
         chdir: /var/www/html/simple-lamp
         cmd: chown -R www-data:www-data uploads
+        
+    - script: ./scripts/run_sql.sh
+
 
     
 
