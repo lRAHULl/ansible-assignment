@@ -1,5 +1,3 @@
-[linux]
+[linux_servers]
 linux1
 linux2 
-
-[linux:vars]
