@@ -1,0 +1,6 @@
+- name: Install MySQL Community Repo
+  command: /usr/bin/rpm -ivh /tmp/mysql-community-release-el7-7.noarch.rpm
+  register: install_out
+  ignore_errors: True
+  notify:
+    - Install Failed

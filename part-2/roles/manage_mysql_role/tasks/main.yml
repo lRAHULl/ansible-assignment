@@ -1,2 +1,6 @@
 ---
-# tasks file for manage_mysql_role
+- include: download-repo
+- include: install-repo
+- include: install-mysql
+- include: start-service
+

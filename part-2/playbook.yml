@@ -1,23 +1,15 @@
 - name: Manage MySQL
   hosts: amazon-linux
+  roles:
+    - role: manage_my_sql_role
   tasks:
-    - name: Download MySQL Community Repo
-      get_url:
-        url: http://repo.mysql.com/mysql-community-release-el7-7.noarch.rpm
-        dest: /tmp
+    - 
 
-    - name: Install MySQL Community Repo
-      command: /usr/bin/rpm -ivh /tmp/mysql-community-release-el7-7.noarch.rpm
-      register: install_out
-      ignore_errors: True
+    
 
-    - name: fail the play if the previous command did not succeed
-      debug:
-        msg: "Installation Failed {{ install_out.stderr }}"
-      when: install_out.stderr != ''
+    
 
-    - name: Install MySQL Server
-      yum: name=mysql-server state=present
+    
 
     - name: Start MySQL Server and enable it
       service: name=mysqld state=started enabled=yes

@@ -1,0 +1,4 @@
+- name: Download MySQL Community Repo
+  get_url:
+    url: http://repo.mysql.com/mysql-community-release-el7-7.noarch.rpm
+    dest: /tmp
