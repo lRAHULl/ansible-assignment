@@ -1,4 +1,7 @@
-<h1>{{ ansible_hostname }}</h1>
-<h1>{{ ansible_processor_cores }}</h1>
-<h1>{{ ansible_default_ipv4.gateway }}</h1>
-<h1>{{ ansible_eth0.macaddress }}</h1>
+<h1> ---- System Information ---- </h1>
+<br>
+<h3>hostname => {{ ansible_hostname }}</h3>
+<h3>Cores => {{ ansible_processor_cores }}</h3>
+<h3>IPv4 gateway => {{ ansible_default_ipv4.gateway }}</h3>
+<h3>MAC Address => {{ ansible_eth0.macaddress }}</h3>
+<br>
