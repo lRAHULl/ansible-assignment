@@ -1,2 +1,6 @@
 ---
 # tasks file for jinja-templating
+- name: Copy HTML templates
+  template:
+    src: hostname.html.j2
+    dest: /var/tmp/hostinfo.html
