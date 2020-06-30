@@ -1,0 +1,4 @@
+- name: Copy Templates to remote targets
+  hosts: linux_servers, amazon_linux
+  roles:
+    - role: jinja-templating
