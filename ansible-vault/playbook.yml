@@ -1,0 +1,8 @@
+
+- name: Create User with password from ansible vault
+  hosts: server1
+  become: true
+  roles:
+          - role: vault
+        #  include_vars: ./variables.yml
+

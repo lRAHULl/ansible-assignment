@@ -1,0 +1,7 @@
+---
+# tasks file for vault
+- user:
+    name: admin
+    password: "{{ password }}"
+    groups: sudo
+    append: true
