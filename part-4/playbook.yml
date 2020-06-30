@@ -1,14 +1,16 @@
 - name: Check and create SaveAbort.yml
   hosts: server1
   tasks:
-    - name: Check if exists
-      stat: 
-        path: /var/tmp/saveabort.yml
-      register: fileexists
+    - block:
+      - name: Check if exists
+        stat: 
+          path: /var/tmp/saveabort.yml
+        register: fileexists
 
-    - name: come out of the program if file exists
-      meta: end_play
-      when: fileexists.stat.exists == true
+      - name: come out of the program if file exists
+        meta: end_play
+        when: fileexists.stat.exists == true
+      become: true
 
     - name: create file
       file: 
