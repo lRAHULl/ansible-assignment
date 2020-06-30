@@ -14,7 +14,6 @@
       file: 
         path: /var/tmp/saveabort.yml 
         state: touch
-      when: fileexists.stat.exists == false
 
 
         
