@@ -10,6 +10,7 @@
       - name: come out of the program if file exists
         meta: end_play
         when: fileexists.stat.exists == true
+      become: true
 
     - name: create file
       file: 
